@@ -114,3 +114,5 @@ public/~$hnung-template.docx
 
 # ─── MkDocs build output ───────────────────────────────────────────
 doc/mkdocs/site/
+database/custom/ausweis_front.jpg
+openlibry.code-workspace
