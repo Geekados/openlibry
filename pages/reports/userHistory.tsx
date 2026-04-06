@@ -33,7 +33,7 @@ const COLUMN_WIDTHS: Record<string, number> = {
   schoolGrade: 100,
   fullName: 250,
   borrowCount: 80,
-  borrowedBooks: 450, 
+  borrowedBooks: 450,
 };
 
 const pdfStyles = StyleSheet.create({
@@ -59,7 +59,7 @@ const HistoryPdfDocument = ({ data }: { data: any[] }) => (
           Erstellt am {new Date().toLocaleDateString("de-DE")} • {data.length} Nutzer
         </Text>
       </View>
-      
+
       {/* Tabellen-Header */}
       <View style={pdfStyles.tableHeader}>
         <Text style={pdfStyles.colGrade}>Klasse</Text>
@@ -123,45 +123,45 @@ export default function Users({ history }: { history: any[] }) {
         </div>
       ),
     },
-{
-  id: "fullName",
-  accessorFn: (row) => `${row.lastName}, ${row.firstName}`,
-  size: COLUMN_WIDTHS.fullName,
-  header: ({ column }) => (
-    <div className="flex flex-col gap-1.5 py-1">
-      {/* Schriftgröße auf 10px korrigiert */}
-      <span className="uppercase text-[14px] font-semibold text-muted-foreground tracking-wider mb-1">
-        Name (Suche)
-      </span>
-      <div className="relative">
-        <Search className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400" size={12} />
-        <input
-          type="text"
-          value={(column.getFilterValue() as string) ?? ""}
-          onChange={(e) => column.setFilterValue(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Escape') {
-              e.preventDefault(); // Verhindert Browser-Standardverhalten
-              column.setFilterValue("");
-              // Optional: Fokus behalten/erzwingen
-              (e.target as HTMLInputElement).blur();
-              (e.target as HTMLInputElement).focus();
-            }
-          }}
-          placeholder="Name tippen..."
-          className="w-full font-normal text-xs border border-gray-200 rounded pl-7 pr-2 py-1 bg-white outline-none focus:ring-1 focus:ring-primary text-black"
-        />
-      </div>
-    </div>
-  ),
-},
+    {
+      id: "fullName",
+      accessorFn: (row) => `${row.lastName}, ${row.firstName}`,
+      size: COLUMN_WIDTHS.fullName,
+      header: ({ column }) => (
+        <div className="flex flex-col gap-1.5 py-1">
+          {/* Schriftgröße auf 10px korrigiert */}
+          <span className="uppercase text-[14px] font-semibold text-muted-foreground tracking-wider mb-1">
+            Name (Suche)
+          </span>
+          <div className="relative">
+            <Search className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400" size={12} />
+            <input
+              type="text"
+              value={(column.getFilterValue() as string) ?? ""}
+              onChange={(e) => column.setFilterValue(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') {
+                  e.preventDefault();
+                  column.setFilterValue("");
+                  // Optional: Fokus behalten/erzwingen
+                  (e.target as HTMLInputElement).blur();
+                  (e.target as HTMLInputElement).focus();
+                }
+              }}
+              placeholder="Name tippen..."
+              className="w-full font-normal text-xs border border-gray-200 rounded pl-7 pr-2 py-1 bg-white outline-none focus:ring-1 focus:ring-primary text-black"
+            />
+          </div>
+        </div>
+      ),
+    },
     {
       accessorKey: "borrowCount",
       size: COLUMN_WIDTHS.borrowCount,
       header: () => (
         <div className="flex flex-col gap-1.5 py-1 items-center">
           <span className={headerClass}>Gesamt</span>
-          <div className="h-6.5" /> 
+          <div className="h-6.5" />
         </div>
       ),
       cell: ({ getValue }) => <div className="text-center font-medium">{getValue() as number}</div>,
@@ -244,24 +244,24 @@ export default function Users({ history }: { history: any[] }) {
     <Layout>
 
       <div className="w-full mt-5 p-2 bg-background-table rounded-xl">
-        
+
         <div className="mb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div className="flex items-center gap-3">
-          <Link 
-            href="/reports" 
-            className="flex items-center gap-1 text-gray-500 hover:text-primary transition-colors text-sm font-medium group"
-          >
-            <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
-            Zurück
-          </Link>
-          
-          <div className="h-6 w-px bg-gray-300 mx-1" /> {/* Vertikaler Strich */}
-          
-          <h2 className="text-lg font-bold text-primary flex items-center gap-2.5">
-            <History size={20} className="text-blue-600" />
-            Verlauf der Leihen <i>({table.getFilteredRowModel().rows.length} Nutzer werden angezeigt)</i>
-          </h2>
-        </div>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/reports"
+              className="flex items-center gap-1 text-gray-500 hover:text-primary transition-colors text-sm font-medium group"
+            >
+              <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
+              Zurück
+            </Link>
+
+            <div className="h-6 w-px bg-gray-300 mx-1" /> {/* Vertikaler Strich */}
+
+            <h2 className="text-lg font-bold text-primary flex items-center gap-2.5">
+              <History size={20} className="text-blue-600" />
+              Verlauf der Leihen <i>({table.getFilteredRowModel().rows.length} Nutzer werden angezeigt)</i>
+            </h2>
+          </div>
           <div className="flex gap-2">
             <button onClick={handlePdfExport} className="flex items-center gap-2 px-4 py-2 bg-secondary text-white rounded-lg text-sm hover:opacity-90 shadow-sm transition-all">
               <FileText size={16} /> PDF Export
@@ -278,10 +278,10 @@ export default function Users({ history }: { history: any[] }) {
               {table.getHeaderGroups().map(hg => (
                 <tr key={hg.id}>
                   {hg.headers.map(header => (
-                    <th 
-                      key={header.id} 
+                    <th
+                      key={header.id}
                       className="px-4 py-3 text-left overflow-hidden align-top"
-                      style={{ width: header.column.columnDef.size }} 
+                      style={{ width: header.column.columnDef.size }}
                     >
                       {flexRender(header.column.columnDef.header, header.getContext())}
                     </th>
@@ -321,7 +321,7 @@ export async function getServerSideProps() {
         .map(rent => ({
           loanDate: convertDateToDayString(rent.createdAt),
           rawDate: rent.createdAt.toISOString(),
-          bookId: rent.bookid || "?", 
+          bookId: rent.bookid || "?",
           title: bookMap.get(rent.bookid!) || `Unbekanntes Buch`
         }))
         .sort((a, b) => b.rawDate.localeCompare(a.rawDate));
