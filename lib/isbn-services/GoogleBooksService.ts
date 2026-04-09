@@ -48,7 +48,8 @@ interface GoogleBooksResponse {
  */
 async function fetchFromGoogleBooks(isbn: string): Promise<BookFormData | null> {
   const cleanIsbn = normalizeIsbn(isbn);
-  const url = `${API_BASE_URL}?q=isbn:${cleanIsbn}`;
+  const url = `${API_BASE_URL}?q=isbn:${cleanIsbn}&key=${process.env.GOOGLE_BOOKS_API_KEY || ""}`;
+  console.log(url);
 
   try {
     const response = await fetch(url);
