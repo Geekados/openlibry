@@ -94,6 +94,7 @@ export default function Reports({
           totalNumber={auditCount}
           link="reports/audit"
         />
+        
         {/* Etiketten cards stacked in one column */}
         <div className="flex flex-col gap-3">
           <BookLabelPrintCard />
@@ -122,6 +123,13 @@ export default function Reports({
           link="/api/report/reminder"
           overdueCount={overdueCount}
           nonExtendableCount={nonExtendableCount}
+        />
+        <LinkCard
+          title="Ausleih-Historie"
+          subtitle="Alle jemals ausgeliehenen Bücher pro Nutzer"
+          buttonTitle="Ansehen"
+          link="reports/userhistory"
+          dataCy="user-history-card"
         />
       </div>
       <TagCloudDashboard tagsSet={tagSet} />
